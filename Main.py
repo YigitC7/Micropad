@@ -1,3 +1,5 @@
+#! Bu program linux işletim sistemleri için yapıldı
+
 """
 Bu program ilk başta kapalı kaynak olarak windwos için yapıştım
 Linuxa geçince bu programı geliştirmeyi bırakmıştım,
@@ -6,13 +8,14 @@ ve açık kaynk olarka yayınlamaya
 
 Yiğit çıtak tarafından programlanmıştır.
 """
+
 import customtkinter as ctk
 import kay
 from os import getenv
 from os import mkdir
 
 kullanici_dizini = getenv('HOME')
-version = (1.0, "kararlı sürüm")
+version = (1.1, "kararlı sürüm")
 
 def system_save(
 	name="",
@@ -90,29 +93,71 @@ def system_save(
 			file_yaziRenk.write("4")
 			file_yaziRenk.close()
 
+	elif name == "YaziBoyut":
+		if durum5 == 1:
+			file_window = open(f"{kullanici_dizini}/.micropad/system-save-yaziBoyut.YC","w")
+			file_window.write("10")
+			file_window.close()
+		elif durum5 == 2:
+			file_window = open(f"{kullanici_dizini}/.micropad/system-save-yaziBoyut.YC","w")
+			file_window.write("20")
+			file_window.close()
+		elif durum5 == 3:
+			file_window = open(f"{kullanici_dizini}/.micropad/system-save-yaziBoyut.YC","w")
+			file_window.write("30")
+			file_window.close()
+		elif durum5 == 4:
+			file_window = open(f"{kullanici_dizini}/.micropad/system-save-yaziBoyut.YC","w")
+			file_window.write("40")
+			file_window.close()
+		elif durum5 == 5:
+			file_window = open(f"{kullanici_dizini}/.micropad/system-save-yaziBoyut.YC","w")
+			file_window.write("50")
+			file_window.close()
+		elif durum5 == 6:
+			file_window = open(f"{kullanici_dizini}/.micropad/system-save-yaziBoyut.YC","w")
+			file_window.write("60")
+			file_window.close()
+		elif durum5 == 7:
+			file_window = open(f"{kullanici_dizini}/.micropad/system-save-yaziBoyut.YC","w")
+			file_window.write("70")
+			file_window.close()
+
+#durum 1
 def system_save_tema():
 	file_tema = open(f"{kullanici_dizini}/.micropad/system-save-tema.YC","r")
 	veri = file_tema.read()
 	return veri
 	file_tema.close()
 
+#durum 2
 def system_save_windowColor():
 	file_tema = open(f"{kullanici_dizini}/.micropad/system-save-windowColor.YC","r")
 	veri = file_tema.read()
 	return veri
 	file_tema.close()
 
+#durum 3
 def system_save_genismi():
 	file_genismi = open(f"{kullanici_dizini}/.micropad/system-save-genismi.YC","r")
 	veri = file_genismi.read()
 	return veri
 	file_genismi.close()
 
+#durum 4
 def system_save_yaziRenk():
 	file_yaziRenk = open(f"{kullanici_dizini}/.micropad/system_save_yaziRenk.YC","r")
 	veri = file_yaziRenk.read()
 	return veri
 	file_yaziRenk.close()
+
+#durum 5
+def system_save_yaziBoyut():
+	file_yaziBoyut = open(f"{kullanici_dizini}/.micropad/system-save-yaziBoyut.YC","r")
+	veri = file_yaziBoyut.read()
+	return veri
+	file_yaziBoyut.close()
+
 
 def program():
 	try:
@@ -141,15 +186,19 @@ def program():
 		current_file = kay.new_file(pad)
 
 
-	#dark colors:
-	renk_window_dark = "#6A5ACD"
-	renk_buton_dark = "#660099"
-	renk_buton_secili_dark = "#800080"
-	renk_secenek_dark = "#4B0082"
+	class color:
+		def __init__(self,
+			renk="",
+			renk2=""):
+			self.renk = renk
+			self.renk2 = renk2
 
+	window_colorC = color(renk="#6A5ACD")
+	buton_colorC = color(renk="#660099",renk2="#800080")
+	secenek_colorC = color(renk="#4B0082")
 
 	window = ctk.CTk()
-	window.title("Micropad")
+	window.title("Not Editörü")
 	window.minsize(900,500)
 	window.geometry("1200x700")
 
@@ -171,7 +220,7 @@ def program():
 
 	try:
 		if system_save_windowColor() == "1":
-			window.configure(fg_color=renk_window_dark)
+			window.configure(fg_color=window_colorC.renk)
 			title.configure(text_color="white")
 
 		elif system_save_windowColor() == "2":
@@ -198,7 +247,7 @@ def program():
 			window.configure(fg_color="#FF00CC")
 			title.configure(text_color="white")
 	except:
-		window.configure(fg_color=renk_window_dark)
+		window.configure(fg_color=window_colorC.renk)
 		title.configure(text_color="white")	
 
 	global pad
@@ -208,10 +257,15 @@ def program():
 		width=1900,
 		pady=10,
 		padx=10,
-		font=("Arial",20),
 		wrap="word"
 		)
 	pad.pack(pady=2,padx=7)
+
+	try:
+		pad.configure(font=("italic",int(system_save_yaziBoyut())))
+	except:
+		pad.configure(font=("italic",20))
+
 	try:
 		if system_save_yaziRenk() == "1":
 			pad.configure(text_color="white")
@@ -226,7 +280,7 @@ def program():
 
 	def dosya_icerik():
 		def geri():
-			dosya_buton.configure(fg_color=renk_buton_dark)
+			dosya_buton.configure(fg_color=buton_colorC.renk)
 			dosya.place_forget()
 			try:
 				gorunum.place_forget()
@@ -242,21 +296,21 @@ def program():
 
 		global dosya
 
-		gorunum_buton.configure(fg_color=renk_buton_dark)
-		dosya_buton.configure(fg_color=renk_buton_secili_dark)
+		gorunum_buton.configure(fg_color=buton_colorC.renk)
+		dosya_buton.configure(fg_color=buton_colorC.renk2)
 
 		dosya = ctk.CTkScrollableFrame(
 			window,
 			height=20,
 			width=100,
-			fg_color=renk_secenek_dark
+			fg_color=secenek_colorC.renk
 			)
 		dosya.place(x=7,y=42)
 
 		kaydet = ctk.CTkButton(
 			dosya,
 			text="Kaydet",
-			fg_color=renk_buton_dark,
+			fg_color=buton_colorC.renk,
 			command=update_current_file_save,
 			)
 		kaydet.pack(pady=5)
@@ -264,7 +318,7 @@ def program():
 		farkli_ac = ctk.CTkButton(
 			dosya,
 			text="Farklı kaydet",
-			fg_color=renk_buton_dark,
+			fg_color=buton_colorC.renk,
 			command=update_current_file_save_as
 			)
 		farkli_ac.pack(pady=5)
@@ -272,7 +326,7 @@ def program():
 		ac = ctk.CTkButton(
 			dosya,
 			text="Aç",
-			fg_color=renk_buton_dark,
+			fg_color=buton_colorC.renk,
 			command=update_current_file_open
 			)
 		ac.pack(pady=5)
@@ -280,7 +334,7 @@ def program():
 		yeni = ctk.CTkButton(
 			dosya,
 			text="Yeni",
-			fg_color=renk_buton_dark,
+			fg_color=buton_colorC.renk,
 			command=update_new_file
 			)
 		yeni.pack(pady=5)
@@ -289,7 +343,7 @@ def program():
 
 		V = ctk.CTkLabel(
 			dosya,
-			text=f"sürüm: {version[0]}\n{version[1]}",
+			text=f"HAKKINDA\n\n== {version[0]} ==\n{version[1]}\n\nHazırlayan:\nYiğit Çıtak",
 			font=("Arial",14),
 			text_color="white"
 			).pack(pady=60)
@@ -298,16 +352,14 @@ def program():
 		window,
 		text="Dosya",
 		width=2,
-		fg_color=renk_buton_dark,
+		fg_color=buton_colorC.renk,
 		command=dosya_icerik
 		)
 	dosya_buton.place(x=3,y=3)
 
 	def gorunum_icerik():
-		global font_boyut_1122
-		font_boyut_1122 = "20"
 		def geri():
-			gorunum_buton.configure(fg_color=renk_buton_dark)
+			gorunum_buton.configure(fg_color=buton_colorC.renk)
 			gorunum.place_forget()
 			try:
 				dosya.place_forget()
@@ -323,14 +375,14 @@ def program():
 
 		global gorunum
 
-		dosya_buton.configure(fg_color=renk_buton_dark)
-		gorunum_buton.configure(fg_color=renk_buton_secili_dark)
+		dosya_buton.configure(fg_color=buton_colorC.renk)
+		gorunum_buton.configure(fg_color=buton_colorC.renk2)
 
 		gorunum = ctk.CTkScrollableFrame(
 			window,
 			height=20,
 			width=160,
-			fg_color=renk_secenek_dark
+			fg_color=secenek_colorC.renk
 			)
 		gorunum.place(x=40,y=42)
 
@@ -399,7 +451,7 @@ def program():
 
 		def window_renklendir(chuice):
 			if chuice == "Varsayılan":
-				window.configure(fg_color=renk_window_dark)
+				window.configure(fg_color=window_colorC.renk)
 				title.configure(text_color="white")
 				system_save(durum2=1,name="windowColor")
 			elif chuice == "Mavi":
@@ -457,7 +509,7 @@ def program():
 		window,
 		text="Görünüm",
 		width=2,
-		fg_color=renk_buton_dark,
+		fg_color=buton_colorC.renk,
 		command=gorunum_icerik
 		)
 	gorunum_buton.place(x=63,y=3)
@@ -466,7 +518,7 @@ def program():
 		window,
 		text="Kaydet",
 		width=2,
-		fg_color=renk_buton_dark,
+		fg_color=buton_colorC.renk,
 		command=update_current_file_save
 		)
 	kayit_buton.place(x=3,y=55)
@@ -477,12 +529,12 @@ def program():
 				kayit_buton.place(x=3,y=55)
 				yeni_buton.place(x=73,y=55)
 				font_boyut.place(x=160,y=55)
-				genislet_buton.configure(fg_color=renk_buton_dark,command=genislet)
+				genislet_buton.configure(fg_color=buton_colorC.renk,command=genislet)
 				system_save(name="genismi",durum3=False)
 				print(system_save_genismi())
 
 			title.configure(text="Micropad")
-			genislet_buton.configure(fg_color=renk_buton_secili_dark,command=geni_geri)
+			genislet_buton.configure(fg_color=buton_colorC.renk2,command=geni_geri)
 			kayit_buton.place_forget()
 			yeni_buton.place_forget()
 			font_boyut.place_forget()
@@ -493,7 +545,7 @@ def program():
 		window,
 		text="Genişlet",
 		width=1,
-		fg_color=renk_buton_dark,
+		fg_color=buton_colorC.renk,
 		command=genislet
 		)
 	genislet_buton.place(x=180,y=3)
@@ -502,7 +554,7 @@ def program():
 		window,
 		text="Yeni",
 		width=1,
-		fg_color=renk_buton_dark,
+		fg_color=buton_colorC.renk,
 		command=update_new_file
 		)
 	yeni_buton.place(x=73,y=55)
@@ -510,38 +562,43 @@ def program():
 	def boyutlama(chuice):
 		if chuice == "10":
 			pad.configure(font=("italic",10))
-			font_boyut_1122 = "10"
+			system_save(name="YaziBoyut",durum5=1)
 
 		elif chuice == "20":
 			pad.configure(font=("italic",20))
-			font_boyut_1122 = "30"
+			system_save(name="YaziBoyut",durum5=2)
 
 		elif chuice == "30":
 			pad.configure(font=("italic",30))
-			font_boyut_1122 = "30"
+			system_save(name="YaziBoyut",durum5=3)
 
 		elif chuice == "40":
 			pad.configure(font=("italic",40))
-			font_boyut_1122 = "10"
+			system_save(name="YaziBoyut",durum5=4)
 
 		elif chuice == "50":
 			pad.configure(font=("italic",50))
-			font_boyut_1122 = "10"
+			system_save(name="YaziBoyut",durum5=5)
 
 		elif chuice == "60":
 			pad.configure(font=("italic",60))
-			font_boyut_1122 = "10"
+			system_save(name="YaziBoyut",durum5=6)
 
 		elif chuice == "70":
 			pad.configure(font=("italic",70))
-			font_boyut_1122 = "10"
+			system_save(name="YaziBoyut",durum5=7)
+
+		print(system_save_yaziBoyut())
 
 	font_boyut = ctk.CTkComboBox(
 		window,
 		values=["10","20","30","40","50","60","70"],
 		command=boyutlama
 		)
-	font_boyut.set(f"Yazı boyutu")
+	try:
+		font_boyut.set(f"Yazı Boyutu: {system_save_yaziBoyut()}")
+	except:
+		font_boyut.set("Yazı Boyutu: 20")
 	font_boyut.place(x=160,y=55)
 
 
@@ -550,7 +607,7 @@ def program():
 		kayit_buton.place(x=3,y=55)
 		yeni_buton.place(x=73,y=55)
 		font_boyut.place(x=160,y=55)
-		genislet_buton.configure(fg_color=renk_buton_dark,command=genislet)
+		genislet_buton.configure(fg_color=buton_colorC.renk,command=genislet)
 		system_save(name="genismi",durum3=False)
 		print(system_save_genismi())
 
@@ -560,7 +617,7 @@ def program():
 			yeni_buton.place_forget()
 			kayit_buton.place_forget()
 			font_boyut.place_forget()
-			genislet_buton.configure(command=geni_geri01,fg_color=renk_buton_secili_dark)
+			genislet_buton.configure(command=geni_geri01,fg_color=buton_colorC.renk2)
 
 		elif system_save_genismi() == "0":
 			title.configure("\nMicropad\n")
