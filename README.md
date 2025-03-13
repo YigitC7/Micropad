@@ -1,9 +1,12 @@
-# Micropad
+
 <div align="center">
+  
+  # Micropad
+  
   <a href="https://github.com/SabanGnc">
     <img src="https://github.com/SabanGnc/SabanGnc/assets/139702707/cc75e47a-eda0-498f-bc38-1a9a3e6ea37c" alt="Github Stats" width="1200">
   </a>
-  
+<br>
 This is a text editor. It is highly customizable and made with the Customtkinter library. It's a little slow, but it's a nice program. This program was made with the Customtkinter library, this library is almost unknown in Turkey.
 
 Development support has ended!
