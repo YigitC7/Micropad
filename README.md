@@ -21,11 +21,11 @@ Development support has ended!
 </div>
 
 ### For Windows
-<h2>
+<h3>
 <a href="https://github.com/YigitC7/Micropad/releases/download/1.1/Micropad.exe">EXE</a> one file
 <br>
 <a href="https://github.com/YigitC7/Micropad/releases/download/1.1/Micropad-setup64.exe">Setup</a> file
-</h2>
+</h3>
 <br>
 <br>
 <br>
