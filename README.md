@@ -29,6 +29,7 @@ Development support has ended!
 <br>
 <br>
 <br>
+
 [![CTk](img/ctk.png)](https://customtkinter.tomschimansky.com/)
 <br>
 ![kapak](img/kapak.png)
