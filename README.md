@@ -13,7 +13,7 @@ This is a text editor. It is highly customizable and made with the Customtkinter
 <br>
 Development support has ended!
 
-## Install and Upgrade
+## Install
 ### For Debian and debian-based distributions
 <div style="background-color:#000; color:#fff; padding:10px; border-radius:5px; position:relative;">
   <button style="position:absolute; top:5px; right:5px; background-color:#fff; border:none; color:#000; padding:5px 10px; border-radius:3px;" onclick="navigator.clipboard.writeText('curl -sSL https://yigit-packages.netlify.app/micropad/install.sh | bash')"></button>
