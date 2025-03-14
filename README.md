@@ -19,6 +19,10 @@ For Debian and debian-based distributions
   <button style="position:absolute; top:5px; right:5px; background-color:#fff; border:none; color:#000; padding:5px 10px; border-radius:3px;" onclick="navigator.clipboard.writeText('curl -sSL https://yigit-packages.netlify.app/micropad/install.sh | bash')"></button>
   <pre><code>curl -sSL https://yigit-packages.netlify.app/micropad/install.sh | bash</code></pre>
 </div>
+<br>
+For Windows
+<a href="https://github.com/YigitC7/Micropad/releases/download/1.1/Micropad.exe">EXE</a> one file
+<a href="https://github.com/YigitC7/Micropad/releases/download/1.1/Micropad-setup64.exe">Setup</a> file
 
 [![CTk](img/ctk.png)](https://customtkinter.tomschimansky.com/)
 <br>
